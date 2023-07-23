@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -17,6 +19,8 @@ public class User implements Serializable {
     private String email;
     private String phone;
     private String pass;
+    @OneToMany(mappedBy = "client")
+    private List<Order> orders = new ArrayList<>();
 
 
     public User(Long id, String name, String email, String phone, String pass) {
@@ -68,6 +72,10 @@ public class User implements Serializable {
 
     public void setPass(String pass) {
         this.pass = pass;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
     }
 
     @Override
