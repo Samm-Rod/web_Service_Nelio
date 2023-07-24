@@ -1,5 +1,6 @@
 package com.web.service.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -19,6 +20,7 @@ public class User implements Serializable {
     private String email;
     private String phone;
     private String pass;
+    @JsonIgnore
     @OneToMany(mappedBy = "client")
     private List<Order> orders = new ArrayList<>();
 
